@@ -1,0 +1,76 @@
+# depslib dependency file v1.0
+1506643716 source:d:\mc\esqueleto\esqueletoparcial\entidad1.c
+	<stdio.h>
+	<stdlib.h>
+	"entidad1.h"
+	<string.h>
+	"validar.h"
+
+1506643639 d:\mc\esqueleto\esqueletoparcial\entidad1.h
+
+1506640547 source:d:\mc\esqueleto\esqueletoparcial\entidad2.c
+	<stdio.h>
+	<stdlib.h>
+	"entidad2.h"
+	<string.h>
+	"validar.h"
+
+1506640494 d:\mc\esqueleto\esqueletoparcial\entidad2.h
+
+1506638395 source:d:\mc\esqueleto\esqueletoparcial\main.c
+	<stdio.h>
+	<stdlib.h>
+	"entidad1.h"
+	"entidad2.h"
+
+1506548593 source:d:\mc\esqueleto\esqueletoparcial\validar.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"validar.h"
+
+1506548593 d:\mc\esqueleto\esqueletoparcial\validar.h
+
+1507225879 source:c:\users\matias.camara\desktop\mariano\github\parcial\esqueletoparcial\entidad1.c
+	<stdio.h>
+	<stdlib.h>
+	"entidad1.h"
+	<string.h>
+	"validar.h"
+
+1507234018 c:\users\matias.camara\desktop\mariano\github\parcial\esqueletoparcial\entidad1.h
+
+1507226602 c:\users\matias.camara\desktop\mariano\github\parcial\esqueletoparcial\validar.h
+
+1507232736 source:c:\users\matias.camara\desktop\mariano\github\parcial\esqueletoparcial\entidad2.c
+	<stdio.h>
+	<stdlib.h>
+	"entidad2.h"
+	<string.h>
+	"validar.h"
+
+1507235368 c:\users\matias.camara\desktop\mariano\github\parcial\esqueletoparcial\entidad2.h
+	"entidad1.h"
+
+1507208463 source:c:\users\matias.camara\desktop\mariano\github\parcial\esqueletoparcial\main.c
+	<stdio.h>
+	<stdlib.h>
+	"entidad1.h"
+	"entidad2.h"
+	"validar.h"
+
+1507226408 source:c:\users\matias.camara\desktop\mariano\github\parcial\esqueletoparcial\validar.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"validar.h"
+
+1507232788 source:c:\users\matias.camara\desktop\mariano\github\parcial\esqueletoparcial\informes.c
+	<stdio.h>
+	<stdlib.h>
+	"entidad1.h"
+	"entidad2.h"
+	"informes.h"
+
+1507120806 c:\users\matias.camara\desktop\mariano\github\parcial\esqueletoparcial\informes.h
+
