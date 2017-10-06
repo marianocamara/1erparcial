@@ -37,14 +37,12 @@ int main()
                 break;
 
             case 2:
-
                 pant_modificarPantalla(listaPantallas,LEN_PANTALLAS);
                 break;
 
             case 3:
                 val_getUnsignedInt(bufferIdBaja,"\nIngrese ID de la pantalla a dar de baja\n","\nIngese un ID valido\n",2,50);
                 pant_bajaPantalla(listaPantallas,LEN_PANTALLAS,atoi(bufferIdBaja));
-                //falta dar de baja lascontrataciones
                 break;
             case 4:
                 inf_listarPantallas(listaPantallas,LEN_PANTALLAS);
