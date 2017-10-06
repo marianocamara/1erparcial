@@ -74,3 +74,48 @@
 
 1507120806 c:\users\matias.camara\desktop\mariano\github\parcial\esqueletoparcial\informes.h
 
+1507249978 source:d:\mc\esqueletoparcial\1erparcial\entidad1.c
+	<stdio.h>
+	<stdlib.h>
+	"entidad1.h"
+	<string.h>
+	"validar.h"
+
+1507249965 d:\mc\esqueletoparcial\1erparcial\entidad1.h
+
+1507249713 d:\mc\esqueletoparcial\1erparcial\validar.h
+
+1507249713 source:d:\mc\esqueletoparcial\1erparcial\validar.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"validar.h"
+
+1507245534 source:d:\mc\esqueletoparcial\1erparcial\entidad2.c
+	<stdio.h>
+	<stdlib.h>
+	"entidad2.h"
+	<string.h>
+	"validar.h"
+	"entidad1.h"
+
+1507249146 d:\mc\esqueletoparcial\1erparcial\entidad2.h
+	"entidad1.h"
+
+1507249245 source:d:\mc\esqueletoparcial\1erparcial\informes.c
+	<stdio.h>
+	<stdlib.h>
+	"entidad1.h"
+	"entidad2.h"
+	"informes.h"
+
+1507245148 d:\mc\esqueletoparcial\1erparcial\informes.h
+
+1507249965 source:d:\mc\esqueletoparcial\1erparcial\main.c
+	<stdio.h>
+	<stdlib.h>
+	"entidad1.h"
+	"entidad2.h"
+	"validar.h"
+	"informes.h"
+

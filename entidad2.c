@@ -6,15 +6,15 @@
 #include "entidad1.h"
 
 
-int ent2_init (sEntidad2* array, int lenArray)
+int contra_init (sContrataciones* listaContrataciones, int lenlistaContrataciones)
 {
     int retorno = -1;
     int i;
-    if(array != NULL && lenArray > 0)
+    if(listaContrataciones != NULL && lenlistaContrataciones > 0)
     {
-        for(i=0; i<lenArray ; i++)
+        for(i=0; i<lenlistaContrataciones ; i++)
         {
-            array[i].flagOcupado = ENTIDAD2_LIBRE;
+            listaContrataciones[i].flagOcupado = CONTRATACIONES_LIBRE;
         }
     }
     return retorno;
@@ -27,21 +27,21 @@ int ent2_init (sEntidad2* array, int lenArray)
  */
 static int ultimoValorIdAutoincrementable = -1;
 
-int ent2_generarProximoId (void)
+int contra_generarProximoId (void)
 {
     ultimoValorIdAutoincrementable ++ ;
     return ultimoValorIdAutoincrementable;
 }
 
-int ent2_buscarPosicionLibre (sEntidad2* array,int lenArray)
+int contra_buscarPosicionLibre (sContrataciones* listaContrataciones,int lenlistaContrataciones)
 {
     int retorno = -1;
     int i;
-    if(array != NULL && lenArray > 0)
+    if(listaContrataciones != NULL && lenlistaContrataciones > 0)
     {
-        for(i=0; i<lenArray ; i++)
+        for(i=0; i<lenlistaContrataciones ; i++)
         {
-            if(array[i].flagOcupado == ENTIDAD2_LIBRE)
+            if(listaContrataciones[i].flagOcupado == CONTRATACIONES_LIBRE)
             {
                 retorno =  i;
                 break;
@@ -51,45 +51,57 @@ int ent2_buscarPosicionLibre (sEntidad2* array,int lenArray)
     return retorno;
 }
 
-/*int ent2_alta(sEntidad2* array, int lenArray)
+int contra_alta(sContrataciones* listaContrataciones, int lenlistaContrataciones)
 {
     int retorno = -1;
-    // 1. buscar posiscion libre
-    // 2. gererar id
-    // 3. pedir datos al usuario (validados)
-    // 4. cargar datos en item vacio
 
-    int indexVacio = ent2_buscarPosicionLibre (array,lenArray);
+    int indexVacio = contra_buscarPosicionLibre (listaContrataciones,lenlistaContrataciones);
     if (indexVacio >= 0)
     {
-        int idNuevo = ent2_generarProximoId();
+        int idNuevo = contra_generarProximoId();
 
         char bufferAuxNombre[50];
-        if (val_getNombre(bufferAuxNombre,"Ingrese nombre","ERROR",2,50)!= -1)
+        char bufferAuxCuit[50];
+        char bufferAuxId[50];
+        char bufferDias[50];
+        if (val_getUnsignedInt(bufferAuxId,"\nIngrese el ID de la pantalla que desea contratar\n","\nERROR\n",2,50)!= -1)
         {
-            array[indexVacio].flagOcupado = ENTIDAD2_OCUPADO;
-            array[indexVacio].id = idNuevo;
-            strncpy(array[indexVacio].a,bufferAuxNombre,51);
-            retorno = 0;
+            if (val_getNombre(bufferAuxNombre,"\nIngrese su nombre\n","\nERROR\n",2,50)!= -1)
+            {
+                if (val_getUnsignedInt(bufferAuxCuit,"\nIngrese su CUIT\n","\nERROR\n",2,50)!= -1)
+                {
+                    if (val_getNombre(bufferDias,"\nIngrese la cantidad de dias que desea contratar la pantalla\n","\nERROR\n",2,50)!= -1)
+                    {
+                        listaContrataciones[indexVacio].flagOcupado = CONTRATACIONES_OCUPADO;
+                        listaContrataciones[indexVacio].idContrataciones = idNuevo;
+                        strncpy(listaContrataciones[indexVacio].nombre,bufferAuxNombre,50);
+                        strncpy(listaContrataciones[indexVacio].cuitCliente,bufferAuxCuit,50);
+                        listaContrataciones[indexVacio].dias = atoi(bufferDias);
+                        listaContrataciones[indexVacio].idPantalla = atoi(bufferAuxId);
+
+                        retorno = 0;
+                    }
+                }
+            }
         }
     }
     return retorno;
 }
-*/
-int ent2_alta(sEntidad1* array1,sEntidad2* array, int lenEntidad1, int lenEntidad2)
+/*
+int contra_alta(sEntidad1* listaContrataciones1,sContrataciones* listaContrataciones, int lenEntidad1, int lenEntidad2)
 {
    int retorno = -1;
    char bMotivo[51];
    char bOtros[51];
    int idNuevo;
    char b_idEnt1[100];
-   int indexVacio = ent2_buscarPosicionLibre(array,len);
+   int indexVacio = contra_buscarPosicionLibre(listaContrataciones,len);
 
-   if (array != NULL && indexVacio >=0 && indexVacio < len)
+   if (listaContrataciones != NULL && indexVacio >=0 && indexVacio < len)
    {
        if(val_getUnsignedInt(b_idEnt1,"\nIngrese ID entidad1 \n","\nSolo numeros:\n",2,100)==0)
        {
-           int index = ent1_buscarIndicePorId(array1,lenEntidad1,atoi(b_idEnt1));
+           int index = ent1_buscarIndicePorId(listaContrataciones1,lenEntidad1,atoi(b_idEnt1));
            if (index != -1)
            {
                if (val_getUnsignedInt(bMotivo,"\nMotivo:\n  INFARTO [0]\n  ACV [1]\n  GRIPE [2]\n Opcion:","\nMotivo invalido\n",2,51)==0)
@@ -97,14 +109,14 @@ int ent2_alta(sEntidad1* array1,sEntidad2* array, int lenEntidad1, int lenEntida
 
                   if (val_getNombre(bOtros, "\nIngrese ..........\n", "\n............ invalido\n",3,50)==0)
                   {
-                           idNuevo = ent2_generarProximoId(array,len);
+                           idNuevo = contra_generarProximoId(listaContrataciones,len);
 
-                           strncpy(array[indexVacio].otros,bOtros,51);
-                           array[indexVacio].motivo = atoi(bMotivo);
-                           array[indexVacio].idEntidad1 = atoi(b_idEnt1);
-                           array[indexVacio].id = idNuevo;
-                           array[indexVacio].estado = ESTADO_PENDIENTE;
-                           array[indexVacio].flagOcupado = 1;
+                           strncpy(listaContrataciones[indexVacio].otros,bOtros,51);
+                           listaContrataciones[indexVacio].motivo = atoi(bMotivo);
+                           listaContrataciones[indexVacio].idEntidad1 = atoi(b_idEnt1);
+                           listaContrataciones[indexVacio].id = idNuevo;
+                           listaContrataciones[indexVacio].estado = ESTADO_PENDIENTE;
+                           listaContrataciones[indexVacio].flagOcupado = 1;
                            retorno = 0;
                   }
                }
@@ -118,8 +130,10 @@ int ent2_alta(sEntidad1* array1,sEntidad2* array, int lenEntidad1, int lenEntida
    }
    return retorno;
 }
+*/
 
-int ent2_fin(Entidad2 array[], int len)
+/*
+int contra_fin(Entidad2 listaContrataciones[], int len)
 {
    int retorno = -1;
    char bufferId[100];
@@ -127,18 +141,18 @@ int ent2_fin(Entidad2 array[], int len)
    char bufferEstado[2];
 
 
-   if (array != NULL && len >=0)
+   if (listaContrataciones != NULL && len >=0)
    {
        if(val_getUnsignedInt(bufferId,"\nIngrese ID del caso a cerrar \n","\nSolo numeros:\n",2,100)==0);
        {
-           int index = ent2_buscarIndicePorId(array,len,atoi(bufferId));
+           int index = contra_buscarIndicePorId(listaContrataciones,len,atoi(bufferId));
            if (index == -1)
            {
                printf("El ID elegido no existe\n");
                system("pause");
 
            }
-           else if (array[index].estado != ESTADO_PENDIENTE)
+           else if (listaContrataciones[index].estado != ESTADO_PENDIENTE)
            {
                printf("Caso cumplido, Solo se pueden cerrar casos pendientes\n");
                system("pause");
@@ -149,8 +163,8 @@ int ent2_fin(Entidad2 array[], int len)
                {
                    if (val_getUnsignedInt(bufferEstado,"\nEstado de Cierre:\n  Resuelto [1]\n  No Resuelto [2]\n\n Opcion: ","\nRango valido 1-2",2,2)==0)
                       {
-                               array[index].tiempoInsumido = atoi(bufferTiempo);
-                               array[index].estado = atoi(bufferEstado);
+                               listaContrataciones[index].tiempoInsumido = atoi(bufferTiempo);
+                               listaContrataciones[index].estado = atoi(bufferEstado);
                                retorno = 0;
                       }
                }
@@ -159,3 +173,4 @@ int ent2_fin(Entidad2 array[], int len)
    }
    return retorno;
 }
+*/

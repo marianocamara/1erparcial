@@ -2,22 +2,25 @@
 #define ENTIDAD2_H_INCLUDED
 
 typedef struct{
-    char a[51];
-    int b;
-    int id;
+    char cuitCliente[51];
+    char nombre[50];
+    int idContrataciones;
+    int dias;
+    int idPantalla;
     int flagOcupado;
-    int idEntidad1;
-}sEntidad2;
+}sContrataciones;
 
 #endif // ENTIDAD2_H_INCLUDED
 
-#define ENTIDAD2_LIBRE 0
-#define ENTIDAD2_OCUPADO 1
+#define CONTRATACIONES_LIBRE 0
+#define CONTRATACIONES_OCUPADO 1
 
-int ent2_init (sEntidad2* array, int lenArray);
+
+
+int contra_init (sContrataciones* listaContrataciones, int lenlistaContrataciones);
 int ent2_generarProximoId ();
-int ent2_buscarPosicionLibre (sEntidad2* array,int lenArray);
-int ent2_alta(sEntidad1* array1,sEntidad2* array, int lenEntidad1, int lenEntidad2);
+int contra_buscarPosicionLibre (sContrataciones* listaContrataciones,int lenlistaContrataciones);
+int contra_alta(sContrataciones* listaContrataciones, int lenlistaContrataciones);
 
 
 /*

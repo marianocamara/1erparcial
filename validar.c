@@ -3,7 +3,7 @@
 #include <string.h>
 #include "validar.h"
 
-#define MAX_INPUT_BUFFER 50
+#define MAX_INPUT_BUFFER 500
 
 /** \brief obtiene un dato con fgets, asigna '\0' al LF
  * \param buffer donde guarda lo que ingresa el usuario
@@ -39,6 +39,7 @@ void myFgets(char* buffer, int limite ,FILE* archivo)
 
 int val_getNombre(char* destino, char* mensaje,char* mensajeError,int intentos,int limite)
 {
+
     int retorno = -1;
     char buffer[50];
 
@@ -148,6 +149,50 @@ int val_validarUnsignedInt(char* buffer)
 }
 
 /**
+ * \brief Verifica si el valor recibido contiene solo letras y números
+ * \param str Array con la cadena a ser analizada
+ * \return 1 si contiene solo espacio o letras y números, y 0 si no lo es
+ *
+ */
+int val_esAlfaNumerico(char str[])
+{
+   int i=0;
+   while(str[i] != '\0')
+   {
+       if((str[i] != ' ') && (str[i] < 'a' || str[i] > 'z') && (str[i] < 'A' || str[i] > 'Z') && (str[i] < '0' || str[i] > '9'))
+           return 0;
+       i++;
+   }
+   return 1;
+}
+int val_getFloat(char* destino, char* mensaje,char* mensajeError,int intentos,int limite)
+{
+    int retorno = -1;
+    char buffer[MAX_INPUT_BUFFER];
+
+    if(destino != NULL && limite > 0 && limite < MAX_INPUT_BUFFER)
+    {
+        printf(mensaje);
+        for( ;intentos>0;intentos--)
+        {
+            myFgets(buffer, limite ,stdin);
+
+            if(val_esNumericoFlotante(buffer) == -1)
+            {
+                printf(mensajeError);
+                continue;
+            }
+            else
+            {
+                strncpy(destino,buffer,limite);
+                retorno = 0;
+                break;
+            }
+        }
+    }
+    return retorno;
+}
+/**
  * \brief Verifica si el valor recibido es numérico aceptando flotantes
  * \param buffer Array con la cadena a ser analizada
  * \return 1 si es númerico y 0 si no lo es
@@ -178,4 +223,32 @@ int val_esNumericoFlotante(char* buffer)
        i++;
    }
    return 1;
+}
+int val_getDireccion(char* destino, char* mensaje,char* mensajeError,int intentos,int limite)
+{
+
+    int retorno = -1;
+    char buffer[50];
+
+    if(destino != NULL && limite > 0 && limite < MAX_INPUT_BUFFER)
+    {
+        printf(mensaje);
+        for( ;intentos>0;intentos--)
+        {
+            myFgets(buffer, limite ,stdin);
+
+            if(val_esAlfaNumerico(buffer) == -1)
+            {
+                printf(mensajeError);
+                continue;
+            }
+            else
+            {
+                strncpy(destino,buffer,limite);
+                retorno = 0;
+                break;
+            }
+        }
+    }
+    return retorno;
 }

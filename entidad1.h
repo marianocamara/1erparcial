@@ -2,23 +2,27 @@
 #define ENTIDAD1_H_INCLUDED
 
 typedef struct{
-    char a[51];
-    int b;
     int id;
+    char nombrePantalla[51];
+    char direccion[51];
+    int tipoPantalla;
+    float precio;
     int flagOcupado;
-}sEntidad1;
+}sPantalla;
 
 
 #endif // ENTIDAD1_H_INCLUDED
 
-#define ENTIDAD1_LIBRE 0
-#define ENTIDAD1_OCUPADO 1
+#define PANTALLA_LIBRE 0
+#define PANTALLA_OCUPADO 1
 
-int ent1_init (sEntidad1* array, int lenArray);
-int ent1_buscarPosicionLibre (sEntidad1* array,int lenArray);
-int ent1_alta(sEntidad1* array, int lenArray);
-int ent1_buscarIndicePorId(sEntidad1* array, int lenArray, int id);
-int ent1_buscarIndicePorCampoTexto (sEntidad1* array, int len,  char texto[]);
-int ent1_modificar (sEntidad1* array, int len, int id);
-int ent1_baja(sEntidad1* array, int lenArray, int id);
+#define PANTALLA_LCD 0
+#define PANTALLA_LED 1
+
+int pant_init (sPantalla* listaPantallas, int lenLista);
+int pant_buscarPosicionLibre (sPantalla* listaPantallas,int lenLista);
+int pant_alta(sPantalla* listaPantallas, int lenLista);
+//int ent1_buscarIndicePorCampoTexto (sPantalla* array, int len,  char texto[]);
+int pant_modificarPantalla (sPantalla* listaPantallas, int lenLista);
+int pant_bajaPantalla(sPantalla* listaPantallas, int lenLista, int id);
 
